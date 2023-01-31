@@ -2,14 +2,14 @@ s3_conf:
   s3_bucket: test-tushar-test
 
 sftp_conf:
-    filetype: csv
-    delimiter: |
-    directory: /home/ubuntu/data
+  filetype: csv
+  delimiter: |
+  directory: /home/ubuntu/data
 
 mysql_conf:
   dbtable: testdb.TRANSACTIONSYNC
   partition_column: App_Transaction_Id
-  query : "(select * from testdb.TRANSACTIONSYNC where Internal_Member_Id = 'PC7135361') as t"
+  query: "(select * from testdb.TRANSACTIONSYNC where Internal_Member_Id = 'PC7135361') as t"
 
 mongodb_config:
   database: school
@@ -24,23 +24,23 @@ redshift_conf:
 spark_sql_demo:
   agg_demo: >
     select
-        AccountNumber,
-        UniqueTransactionDescriptions,
-        sort_array(UniqueTransactionDescriptions, false) as OrderedUniqueTransactionDescriptions,
-        size(UniqueTransactionDescriptions) as CountOfUniqueTransactionTypes,
-        array_contains(UniqueTransactionDescriptions, 'Movies') as WentToMovies
+      AccountNumber,
+      UniqueTransactionDescriptions,
+      sort_array(UniqueTransactionDescriptions, false) as OrderedUniqueTransactionDescriptions,
+      size(UniqueTransactionDescriptions) as CountOfUniqueTransactionTypes,
+      array_contains(UniqueTransactionDescriptions, 'Movies') as WentToMovies
     from
-        agg_finances
+      agg_finances
 
 
   case_when_demo: >
     select
-        company,
-        employee.firstName as firstName,
-        case
-            when company = 'FamilyCo' then 'Premium'
-            when company = 'OldCo' then 'Legacy'
-            else 'Standard'
-        end as Tier
+      company,
+      employee.firstName as firstName,
+      case
+        when company = 'FamilyCo' then 'Premium'
+        when company = 'OldCo' then 'Legacy'
+        else 'Standard'
+      end as Tier
     from
-        employees
+      employees
